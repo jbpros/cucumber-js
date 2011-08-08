@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cucumber.js</title>
+    <link href="example.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="vendor/jquery-1.6.1.min.js"></script>
+    <script type="text/javascript" src="/browserify.js"></script>
+    <script type="text/javascript" src="/example.js"></script>
+  </head>
+  <body>
+    <h1>Cucumber.js</h1>
+    <h2>Feature source</h2>
+    <textarea id="feature">Feature: Search Google
+  In order to find information about stuff
+  As a web surfer
+  I want to google stuff
+
+  Scenario: Cucumber
+    Given I am on Google
+    When I search for "cucumber bdd"
+    Then I should see a link to the Cucumber website</textarea>
+    <h2>Step definitions</h2>
+    <textarea id="step-definitions">var testee = $('#testee');
+
+Given(/^I am on Google$/, function(callback) {
+  testee.attr('src', 'http://www.google.com');
+  setTimeout(callback, 300); // let the page load
+});
+
+When(/^I search for "cucumber bdd"$/, function(callback) {
+  var page = testee.contents();
+  page.find('input[name="q"]').val('cucumber bdd');
+  page.find('input[name="btnG"]').click();
+  setTimeout(callback, 300);
+});
+
+Then(/^I should see a link to the Cucumber website$/, function(callback) {
+  var page = testee.contents();
+  if (!page.text().match("cukes.info"))
+    throw('Expected page to display a link to the Cucumber website.');
+  callback();
+});</textarea>
+
+  <h2>Output</h2>
+  <p><button id="run-feature">Run feature</button></p>
+  <iframe id="testee"></iframe>
+  <textarea readonly="readonly" id="output"></textarea>
+  <div id="errors-container">
+    <h3>Errors</h3>
+    <pre id="errors"></pre>
+  </div>
+</body>
+</html>

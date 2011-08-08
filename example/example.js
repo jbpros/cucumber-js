@@ -7,7 +7,7 @@ function runFeature() {
   var featureSource   = $('#feature').val();
   eval('supportCode   = function() {' + $('#step-definitions').val() + '};');
   var cucumber        = Cucumber(featureSource, supportCode);
-  var listener  = Cucumber.Listener.ProgressFormatter({logToConsole: false, logToFunction: function(message) {
+  var listener        = Cucumber.Listener.ProgressFormatter({logToConsole: false, logToFunction: function(message) {
     output.val(output.val() + message);
   }});
   cucumber.attachListener(listener);
@@ -15,7 +15,9 @@ function runFeature() {
   errors.text('');
   errorsContainer.hide();
   try {
-    cucumber.start(function() {});
+    cucumber.start(function() {
+      console.log('finished cuking.');
+    });
   } catch(err) {
     errorsContainer.show();
     var errMessage = err.message || err;

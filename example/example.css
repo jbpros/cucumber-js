@@ -3,12 +3,13 @@ html, body {
   min-height:100%;
   font-family:helvetica, arial, freesans, clean, sans-serif;
   font-size:.95em;
+  background:#eeffee;
 }
 
-#feature, #step-definitions, #output, #errors {
-  width:700px;
+#feature, #step-definitions, #output, #errors, #testee {
+  width:580px;
   font-family:'Bitstream Vera Sans Mono', Courier, monospace;
-  font-size:1em;
+  font-size:0.8em;
 }
 
 #feature, #step-definitions, #output {
@@ -16,5 +17,16 @@ html, body {
 }
 
 #errors {
-  color: #a30;
+  color:#a30;
+}
+
+#testee {
+  width:1160px;
+  height:600px;
+  display:block;
+  margin-bottom:-290px;
+  -moz-transform: scale(0.5, 0.5) translate(-50%, -50%);
+  -webkit-transform: scale(0.5, 0.5) translate(-50%, -50%);
+  -o-transform: scale(0.5, 0.5) translate(-50%, -50%);
+  transform: scale(0.5, 0.5) translate(-50%, -50%);
 }
